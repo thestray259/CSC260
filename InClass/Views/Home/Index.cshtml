@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-sm-4 border">
+        <!--<a href="~/home/privacy">Privacy</a>-->
+        <a asp-controller="Home" asp-action="Privacy">Privacy via Controller/Action</a>
+        <a asp-controller="Home" asp-action="Contact"><img src="~/images/shrek.png" width="100" /></a>
+    </div>
+    <div class="col-sm-4 border">Row 1 Col 2</div>
+    <div class="col-sm-4 border">Row 1 Col 3</div>
+</div>
+<div class="row">
+    <div class="col-sm-8 col-xs-12 border">Row 2 Col 1</div>
+    <div class="col-sm-2 col-xs-12 border">Row 2 Col 2</div>
+    <div class="col-sm-2 col-xs-12 border">Row 2 Col 3</div>
+</div>
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
