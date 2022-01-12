@@ -11,6 +11,7 @@ namespace InClass.Controllers
 {
     public class HomeController : Controller
     {
+        private static int count = 0; 
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -30,6 +31,20 @@ namespace InClass.Controllers
 
         public IActionResult Contact()
         {
+            return View();
+        }
+
+        public IActionResult Form()
+        {
+            ViewBag.count = count++; 
+            return View();
+        }
+
+        [HttpPost] // makes it so that you can only submit data via post, not get 
+        public IActionResult Result(string FirstName)
+        {
+            //ViewBag.FirstName = Request.Form["FirstName"]; 
+            ViewBag.FirstName = FirstName; 
             return View();
         }
 

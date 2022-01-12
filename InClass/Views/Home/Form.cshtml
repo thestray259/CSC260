@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Form"; 
+}
+
+<div class="row">
+    <div class="col-4">
+        <h1>Count: @ViewBag.count</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <!-- <form action="/Home/Result">-->
+        <form asp-controller="Home" asp-action="Form">
+            <label for="FirstName">Increase Count: --></label>
+            <button type="submit">Click Me</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <form asp-controller="Home" asp-action="Result" method="post">
+            <label for="FirstName">First Name:</label><br />
+            <input id="FirstName" type="text" name="FirstName" placeholder="First Name" />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
