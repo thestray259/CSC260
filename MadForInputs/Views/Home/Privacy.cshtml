@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Results";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div>
+        Yesterday, <em class="inputs">@ViewBag.noun1</em> and I went to the park.
+        On our way to the <em class="inputs">@ViewBag.adj1</em> park, we saw a
+        <em class="inputs">@ViewBag.adj2</em> <em class="inputs">@ViewBag.noun2</em>
+        on a bike. We also saw big <em class="inputs">@ViewBag.adj3</em> balloons 
+        tied to a <em class="inputs">@ViewBag.noun3</em>. Once we got to the 
+        <em class="inputs">@ViewBag.adj4</em> park, the sky turned
+        <em class="inputs">@ViewBag.adj5</em>. It started to
+        <em class="inputs">@ViewBag.verb1</em> and <em class="inputs">@ViewBag.verb2</em>
+        - <em class="inputs">@ViewBag.noun4</em> and I <em class="inputs">@ViewBag.verb3</em>
+        all the way home. Tomorrow we will try to go to the <em class="inputs">@ViewBag.adj6</em>
+        park again and hope it doesn't <em class="inputs">@ViewBag.verb4</em>.
+    </div>
+
+@*    <div>
+        Play again <a href="../Views/Home/Index.cshtml">here</a>!
+    </div>*@
+
+<div>
+    <a asp-area="" asp-controller="Home" asp-action="Index">Play again here!</a>
+</div>
+</div>

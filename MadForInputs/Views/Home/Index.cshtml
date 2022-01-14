@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Mad For Inputs";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-left">
+    <h1 class="display-4">Welcome</h1>
+    <form class="blanks" asp-controller="Home" asp-action="Privacy" method="post">
+        <input id="noun1" type="text" name="noun1" placeholder="Noun" />
+        <label for="noun1">Noun</label><br />
+        <input id="noun2" type="text" name="noun2" placeholder="Noun" />
+        <label for="noun2">Noun</label><br />
+        <input id="noun3" type="text" name="noun3" placeholder="Noun" />
+        <label for="noun3">Noun</label><br />
+        <input id="noun4" type="text" name="noun4" placeholder="Noun" />
+        <label for="noun4">Noun</label><br />
+
+        <input id="adj1" type="text" name="adj1" placeholder="Adjective" />
+        <label for="adj1">Adjective</label><br />
+        <input id="adj2" type="text" name="adj2" placeholder="Adjective" />
+        <label for="adj2">Adjective</label><br />
+        <input id="adj3" type="text" name="adj3" placeholder="Adjective" />
+        <label for="adj3">Adjective</label><br />
+        <input id="adj4" type="text" name="adj4" placeholder="Adjective" />
+        <label for="adj4">Adjective</label><br />
+        <input id="adj5" type="text" name="adj5" placeholder="Adjective" />
+        <label for="adj5">Adjective</label><br />
+        <input id="adj6" type="text" name="adj6" placeholder="Adjective" />
+        <label for="adj6">Adjective</label><br />
+
+        <input id="verb1" type="text" name="verb1" placeholder="Verb" />
+        <label for="verb1">Verb</label><br />
+        <input id="verb2" type="text" name="verb2" placeholder="Verb" />
+        <label for="verb2">Verb</label><br />
+        <input id="verb3" type="text" name="verb3" placeholder="Verb" />
+        <label for="verb3">Verb</label><br />
+        <input id="verb4" type="text" name="verb4" placeholder="Verb" />
+        <label for="verb4">Verb</label><br />
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>
