@@ -10,7 +10,8 @@ else
 {
     <h1>List of Movies:</h1>
     foreach (var movie in Model)
-        {
-            <h3><partial name="_MoviePartialView.cshtml" for="@movie" /></h3>
-        }
+    {
+        <h3><partial name="_MoviePartialView.cshtml" for="@movie" /></h3>
+    }
+    @Model.Count(); //gets number of movies provided 
 }

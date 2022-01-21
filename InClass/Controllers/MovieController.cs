@@ -17,6 +17,19 @@ namespace InClass.Controllers
             new Movie("Rando", 1998, 3.8f)
         };
 
+        [HttpGet] 
+        public IActionResult AddMovie()
+        {
+            Movie m = new Movie("Spider-Man", 2002, 4.99f); 
+
+            return View("MovieForm", m);
+        }
+
+        public IActionResult MovieForm()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View(MovieList);

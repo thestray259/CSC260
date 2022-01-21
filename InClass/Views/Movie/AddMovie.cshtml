@@ -1,0 +1,11 @@
+﻿@model Movie
+@{
+}
+
+<form asp-controller="Movie" asp-action="AddMovie" method="post">
+    <input asp-for="Title" placeholder="Title" />
+    <input asp-for="Year" placeholder="Year" />
+    <input asp-for="Rating" placeholder="Rating" />
+
+    <button type="submit">Add Movie</button>
+</form>

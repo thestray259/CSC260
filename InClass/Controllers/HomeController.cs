@@ -21,7 +21,24 @@ namespace InClass.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Home Page - Controller"; 
+            DateTime d = DateTime.Now; // gives the date 
+
             return View();
+        }
+
+        public IActionResult Test(int? id) // int? means can hold int or null 
+        {
+            /*            int id; 
+
+                        if (Request.RouteValues["id"] != null)
+                        {
+                            var idparam = Request.RouteValues["id"];
+                            id = int.Parse(idparam.ToString()); 
+                        }*/
+
+            //return Content("id: " + id); // /home/test
+            return Content($"id = {id?.ToString() ?? "VERY NULL"}"); 
         }
 
         public IActionResult Privacy()
