@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InClass
+namespace VideoGameLibrary
 {
     public class Startup
     {
@@ -48,11 +48,6 @@ namespace InClass
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "PizzaToTest",
-                    pattern: "pizza",
-                    defaults: new { controller = "Home", action="Test" }); 
-
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

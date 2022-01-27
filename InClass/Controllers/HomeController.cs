@@ -57,6 +57,12 @@ namespace InClass.Controllers
             return View();
         }
 
+        [Route("shhh")]
+        public IActionResult Secret()
+        {
+            return View();
+        }
+
         [HttpPost] // makes it so that you can only submit data via post, not get 
         public IActionResult Result(string FirstName)
         {

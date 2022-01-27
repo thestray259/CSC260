@@ -1,0 +1,21 @@
+﻿@model GameModel
+@{
+}
+
+@if (Model == null)
+{
+    <h2>No Movies Available</h2>
+}
+else
+{
+    <h2>Movies Available</h2>
+    // if rented out == false, then display those movies here
+
+    <form asp-controller="GameModel" asp-action="RentMovie" method="post">
+        <input asp-for="Title" placeholder="Movie to Rent" />
+        <button type="submit">Rent</button>
+    </form>
+    
+
+    // link to go back to movie page
+}

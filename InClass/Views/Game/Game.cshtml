@@ -1,0 +1,21 @@
+﻿@model IEnumerable<GameModel>
+@{
+}
+
+<h1>Movies for Rent</h1>
+
+@if (Model == null)
+{
+    <h2>No Movies Provided</h2>
+}
+else
+{
+    // display movies in a table 
+    foreach(var movie in Model)
+        {
+            
+        }
+
+    // link here to go to rent movie page 
+    <a asp-controller="Game" asp-action="RentMovie">Rent A Movie Here</a>
+}
