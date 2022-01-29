@@ -20,9 +20,25 @@ namespace InClass.Controllers
         [HttpGet] 
         public IActionResult AddMovie()
         {
-            Movie m = new Movie("Spider-Man", 2002, 4.99f); 
+            //Movie m = new Movie("Spider-Man", 2002, 4.99f); 
+            //return View("MovieForm", m);
+            return View("AddMovie"); 
+        }
 
-            return View("MovieForm", m);
+        public IActionResult AddMovie(Movie movie)
+        {
+/*            if (string.IsNullOrWhiteSpace(movie.Title))
+            {
+                ModelState.AddModelError("Title", "Title cannot be empty"); 
+            }*/
+
+            if (ModelState.IsValid)
+            {
+                MovieList.Add(movie);
+                return Redirect("/Movie/Index"); 
+            }
+
+            return View(movie); 
         }
 
         public IActionResult MovieForm()

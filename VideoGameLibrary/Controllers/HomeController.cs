@@ -11,6 +11,15 @@ namespace VideoGameLibrary.Controllers
 {
     public class HomeController : Controller
     {
+        private static List<VideoGame> GameList = new List<VideoGame>
+        {
+            new VideoGame("Genshin Impact", "PC", "Adventure Role-Playing", "T", 2020), 
+            new VideoGame("Kingdom Hearts", "PlayStation2", "Action Role-Playing", "E10+", 2002), 
+            new VideoGame("Assassin's Creed Brotherhood", "PlayStation4", "Action Adventure, Stealth", "M", 2010), 
+            new VideoGame("Placeholder", "Placeholder", "Placeholder", "Placeholder", 0000, "Jeff", DateTime.Now), 
+            new VideoGame("Placeholder", "Placeholder", "Placeholder", "Placeholder", 0000)
+        };
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -18,6 +27,7 @@ namespace VideoGameLibrary.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -25,7 +35,7 @@ namespace VideoGameLibrary.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            return View(GameList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

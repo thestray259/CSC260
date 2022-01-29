@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,9 +8,13 @@ namespace InClass.Models
 {
     public class Movie
     {
-        public string Title { get; set; } = "NO TITLE";
-        public int Year { get; set; } = 1850;
-        public float Rating { get; set; } = 0.0f;
+        //model validations list online for ASP.NET
+        [Required(ErrorMessage = "Hey Dummy, the Title is Required")]
+        public string Title { get; set; } //= "NO TITLE";
+        [Range(1850, 2022, ErrorMessage ="Year must be between 1850 and 2022")]
+        public int Year { get; set; } //= 1850;
+        [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
+        public float Rating { get; set; } //= 0.0f;
 
         public Movie() { }
 
