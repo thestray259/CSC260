@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InClass
+namespace RoutingExercise
 {
     public class Startup
     {
@@ -50,23 +50,36 @@ namespace InClass
             {
                 /*                endpoints.MapControllerRoute(
                                     name: "PizzaToTest",
-                                    //pattern: "pizza",
+                                    pattern: "pizza",
                                     //pattern: "pizza{id}", // ex pizza5 
                                     //pattern: "pizza/{id?}", // ex pizza/5
-                                    pattern: "pizza/{id:int?}", // ex pizza/5 but has to be slash number 
-                                    defaults: new { controller = "Home", action="Test" });*/
+                                    //pattern: "pizza/{id:int?}", // ex pizza/5 but has to be slash number 
+                                    defaults: new { controller = "Home", action = "Test" }
+                                    );*/
 
-                /* endpoints.MapControllerRoute(
-name: "catchall",
-pattern: "{*catchall}", // could be anything instead of catchall 
-defaults: new { controller = "home", action = "error" }
-);*/
+                endpoints.MapControllerRoute(
+                    name: "first",
+                    pattern: "{id:int}",
+                    defaults: new { controller = "Home", action = "Index" }
+                    );
 
-                /*                endpoints.MapControllerRoute(
-                    name: "many", 
-                    pattern: "colors/{*colors}",
-                    defaults: new { controller = "Home", action = "Colors" }
-                    ); */
+                endpoints.MapControllerRoute(
+                    name: "second",
+                    pattern: "{id:int}/{*name}",
+                    defaults: new { controller = "Home", action = "Index" }
+                    );
+
+                endpoints.MapControllerRoute(
+                    name: "third",
+                    pattern: "AllCows/Gallery/{id:int}",
+                    defaults: new { controller = "Home", action = "Index2" }
+                    );
+
+/*                endpoints.MapControllerRoute(
+                    name: "fourth",
+                    pattern: "AllCows/Gallery/{id:int}/Page{id:int}",
+                    defaults: new { controller = "Home", action = "Index2" }
+                    );*/
 
                 endpoints.MapControllerRoute(
                     name: "default",

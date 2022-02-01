@@ -6,6 +6,7 @@
 
 <form asp-controller="Movie" asp-action="AddMovie" method="post">
     <input asp-for="Title" placeholder="Title" />
+        <span asp-validation-for="Title" class="error-messages" ></span>
     <input asp-for="Year" placeholder="Year" />
     <input asp-for="Rating" placeholder="Rating" />
 

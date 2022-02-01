@@ -11,10 +11,12 @@
 else
 {
     <h2 class="text-center">List of Video Games:</h2>
-    foreach (var game in Model)
-    {
-        <div class="col-sm-12 col-md-6 col-lg-4 text-center mb-3">
+    <div class="row">
+        @foreach (var game in Model)
+        {
+        <div class="col-sm-12 col-md-6 col-lg-4 text-center">
             <h3><partial name="_GamePartialView.cshtml" for="@game" /></h3>
         </div>
-    }
+        }
+    </div>
 }

@@ -12,36 +12,45 @@ namespace VideoGameLibrary.Models
         public string Genre { get; set; } = "NO GENRE"; 
         public string Rating { get; set; } = "NOT RATED";
         public int YearOfRelease { get; set; }
+        public string ImageName { get; set; }
 
-        // image of cover art // string ImageName
         public string LoanedTo { get; set; } = null;
         public DateTime? LoanDate { get; set; } //= null; 
 
         public VideoGame() { }
 
-        public VideoGame(string title, string platform, string genre, string rating, int year, string loanedTo, DateTime loanDate)
+        public VideoGame(string title, string platform, string genre, string rating, int year, string image, string loanedTo, DateTime loanDate)
         {
             this.Title = title;
             this.Platform = platform;
             this.Genre = genre;
             this.Rating = rating;
             this.YearOfRelease = year;
+            this.ImageName = image; 
             this.LoanedTo = loanedTo;
             this.LoanDate = loanDate; 
         }
 
-        public VideoGame(string title, string platform, string genre, string rating, int year)
+        public VideoGame(string title, string platform, string genre, string rating, int year, string image)
         {
             this.Title = title;
             this.Platform = platform;
             this.Genre = genre;
             this.Rating = rating;
             this.YearOfRelease = year;
+            this.ImageName = image; 
         }
 
-        /*        public override string ToString()
-                {
-                    return $"{Title} - {YearOfRelease} - {Rating}";
-                }*/
+        public void Loan(string loanedTo)
+        {
+            this.LoanedTo = loanedTo;
+            LoanDate = DateTime.Now; 
+        }
+
+        public void ReturnGame()
+        {
+            LoanedTo = null;
+            LoanDate = null; 
+        }
     }
 }

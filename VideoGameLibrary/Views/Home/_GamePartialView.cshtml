@@ -1,5 +1,4 @@
-﻿@{
-}
+﻿@model VideoGame
 
 @if (Model == null)
 {
@@ -7,20 +6,33 @@
 }
 else
 {
-    <div>
-        <h3>@Model.Title</h3>
-        <h5>Platform: @Model.Platform</h5>
-        <h5>Genre: @Model.Genre</h5>
-        <h5>ESBR Rating: @Model.Rating</h5>
-        <h5>Year of Release: @Model.YearOfRelease</h5>
-        <!--cover art image-->
-    </div>
+<div class="games">
+    <img class="gameImages" src="~/images/@Model.ImageName" />
+    <h3>@Model.Title</h3>
+    <h5>Platform: @Model.Platform</h5>
+    <h5>Genre: @Model.Genre</h5>
+    <h5>ESBR Rating: @Model.Rating</h5>
+    <h5>Year of Release: @Model.YearOfRelease</h5>
 
-    if (Model.LoanedTo != null)
+    @if (Model.LoanedTo != null)
     {
         <div>
-                <h5><em>Loaned To: @Model.LoanedTo</em></h5>
-                <h5><em>Loan Date: @Model.LoanDate</em></h5>
+            <h5><em>Loaned To: @Model.LoanedTo</em></h5>
+            <h5><em>Loan Date: @Model.LoanDate</em></h5>
+            <form asp-controller="Home" asp-action="ReturnGame" method="post">
+                <input type="text" value="@Model.Title" hidden name="Title" />
+                <button type="submit" class="btn btn-warning">Return</button>
+            </form>
         </div>
     }
+    else
+    {
+        <form asp-controller="Home" asp-action="LoanGame" method="post">
+            <input type="text" value="@Model.Title" hidden name="Title" />
+            <input class="textBox" type="text" required name="loaner" placeholder="Enter Name" />
+            <button type="submit" class="btn btn-warning">Borrow</button>
+        </form>
+    }
+
+</div>
 }
