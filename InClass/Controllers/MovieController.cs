@@ -11,7 +11,13 @@ namespace InClass.Controllers
 {
     public class MovieController : Controller
     {
-        IDataAccessLayer dal = new MovieListDAL(); 
+        //IDataAccessLayer dal = new MovieListDAL(); //bad because of hard coding 
+        IDataAccessLayer dal; 
+
+        public MovieController(IDataAccessLayer indal) // needed for assignment 
+        {
+            dal = indal; 
+        }
 
         [HttpGet] 
         public IActionResult AddMovie()
@@ -23,11 +29,6 @@ namespace InClass.Controllers
 
         public IActionResult AddMovie(Movie movie)
         {
-/*            if (string.IsNullOrWhiteSpace(movie.Title))
-            {
-                ModelState.AddModelError("Title", "Title cannot be empty"); 
-            }*/
-
             if (ModelState.IsValid)
             {
                 //MovieList.Add(movie);
@@ -40,6 +41,11 @@ namespace InClass.Controllers
         }
 
         public IActionResult MovieForm()
+        {
+            return View();
+        }
+
+        public IActionResult Search(string searchTerm)
         {
             return View();
         }

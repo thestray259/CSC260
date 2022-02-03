@@ -52,5 +52,26 @@ namespace InClass.Data
                 MovieList.Remove(foundMovie); 
             }
         }
+
+        public IEnumerable<Movie> Search(string searchTerm)
+        {
+            //string.IsNullOrEmpty(strTitle) // check to make sure there's something there
+            List<Movie> tmpMovies = new List<Movie>(); 
+
+            foreach (var g in MovieList)
+            {
+                if (g.Title.ToUpper().Contains(searchTerm.ToUpper())) //if contains the the searchterm, add to the list and return the list // ToUpper makes all the chars uppercase 
+                {
+                    tmpMovies.Add(g); 
+                }
+            }
+
+            return tmpMovies;
+
+            // these are the doing the same thing as the above code 
+            //return MovieList.Where(g => g.Title.ToUpper().Contains(searchTerm.ToUpper())).ToList(); 
+            //return MovieList.Contains(g => g.Title.ToUpper().Contains(searchTerm.ToUpper())).ToList(); 
+            //return MovieList.FindAll(g => g.Title.ToUpper().Contains(searchTerm.ToUpper())).ToList(); 
+        }
     }
 }
