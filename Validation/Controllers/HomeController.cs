@@ -18,9 +18,18 @@ namespace Validation.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+/*        public IActionResult Index()
         {
             return View();
+        }*/
+
+        public IActionResult Index(Info info)
+        {
+            if (ModelState.IsValid)
+            {
+                return Redirect("/Home/Privacy"); 
+            }
+            return View(info);
         }
 
         public IActionResult Privacy()

@@ -4,18 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InClass.Interfaces;
+using InClass.Data; 
 
 namespace InClass.Controllers
 {
     public class MovieController : Controller
     {
-        private static List<Movie> MovieList = new List<Movie>
-        {
-            new Movie("Iron Man", 2008, 5.0f),
-            new Movie("Blob", 2019, 5.0f),
-            new Movie("Man", 2003, 2.1f),
-            new Movie("Rando", 1998, 3.8f)
-        };
+        IDataAccessLayer dal = new MovieListDAL(); 
 
         [HttpGet] 
         public IActionResult AddMovie()
@@ -34,11 +30,13 @@ namespace InClass.Controllers
 
             if (ModelState.IsValid)
             {
-                MovieList.Add(movie);
+                //MovieList.Add(movie);
+                dal.RemoveMovie(movie.ID); 
+                dal.AddMovie(movie); 
                 return Redirect("/Movie/Index"); 
             }
 
-            return View(movie); 
+            return View("MovieForm", movie); 
         }
 
         public IActionResult MovieForm()
@@ -46,9 +44,25 @@ namespace InClass.Controllers
             return View();
         }
 
+        public IActionResult EditMovie(int id)
+        {
+            Movie m;
+            m = dal.GetMovie(id);
+            dal.RemoveMovie(id); 
+
+            return View("MovieForm", m);
+        }
+
+        public IActionResult DeleteMovie(int? id)
+        {
+            dal.RemoveMovie(id); 
+            return View("Index", dal.GetMovies());
+        }
+
         public IActionResult Index()
         {
-            return View(MovieList);
+            //return View(MovieList);
+            return View(dal.GetMovies().OrderBy(m => m.ReleaseDate).ToList()); 
         }
 
         public IActionResult DisplayMovie()

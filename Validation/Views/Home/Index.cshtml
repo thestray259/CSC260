@@ -1,18 +1,19 @@
-﻿@{
+﻿@model Info 
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <div class="error-messages" asp-validation-summary="All">
+    <div class="error-messages" asp-validation-summary="All"></div>
+    <div>
         <form asp-controller="Home" asp-action="Index" method="post">
-            <input id="name" type="text" name="name" placeholder="Name"/>
-                <span asp-validation-for="name" class="error-messages"></span>
-            <input id="age" type="text" name="age" placeholder="Age"/>
-            <input id="street_address" type="text" name="street_address" placeholder="Street Address"/>
-            <input id="city" type="text" name="city" placeholder="City"/>
-            <input id="state" type="text" name="state" placeholder="State"/>
-            <input id="zip_code" type="text" name="zip_code" placeholder="Zip Code"/>
+            <input id="name" type="text" name="name" placeholder="Name" />
+            <input id="age" type="text" name="age" placeholder="Age" />
+            <input id="street_address" type="text" name="street_address" placeholder="Street Address" />
+            <input id="city" type="text" name="city" placeholder="City" />
+            <input id="state" type="text" name="state" placeholder="State" />
+            <input id="zip_code" type="text" name="zip_code" placeholder="Zip Code" />
 
             <button type="submit">Submit</button>
         </form>

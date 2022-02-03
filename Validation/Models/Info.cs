@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Validation.Models
 {
+    [InfoAttribute]
     public class Info
     {
         [Required(ErrorMessage = "Name cannot be empty.")]
@@ -20,6 +21,7 @@ namespace Validation.Models
         public string City { get; set; }
         //[Required(ErrorMessage = "State cannot be empty.")]
         public string State { get; set; }
+        [DataType(DataType.PostalCode)]
         public int ZipCode { get; set; }
     }
 }
