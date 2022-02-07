@@ -10,7 +10,7 @@ namespace VideoGameLibrary.Data
     public class MockVideoGameDB : IDataAccessLayer
     {
         public static DateTime dateTime = DateTime.Now;
-        public static List<VideoGame> GameList = new List<VideoGame>
+        private static List<VideoGame> GameList = new List<VideoGame>
         {
             new VideoGame("Genshin Impact", "PC", "Adventure Role-Playing", "T", 2020, "genshin.jfif"),
             new VideoGame("Kingdom Hearts", "PlayStation2", "Action Role-Playing", "E10+", 2002, "kingdom_hearts.jpg"),
@@ -35,15 +35,20 @@ namespace VideoGameLibrary.Data
 
         public IEnumerable<VideoGame> FilterCollection(string genre, string platform, string esrbRating)
         {
-            //throw new NotImplementedException();
-
             List<VideoGame> tmpGames = new List<VideoGame>();
 
-            foreach (var g in GameList)
+            // if not null or empty, continue 
+            if (!string.IsNullOrEmpty(genre) && !string.IsNullOrEmpty(platform) && !string.IsNullOrEmpty(esrbRating))
             {
-                if (g.Genre.ToUpper() == genre.ToUpper()) tmpGames.Add(g); 
-                if (g.Platform.ToUpper() == platform.ToUpper()) tmpGames.Add(g); 
-                if (g.Rating.ToUpper() == esrbRating.ToUpper()) tmpGames.Add(g); 
+                foreach (var g in GameList)
+                {
+                    if (g.Genre.ToUpper().Contains(genre.ToUpper()) &&
+                        g.Platform.ToUpper().Contains(platform.ToUpper()) &&
+                        g.Rating.ToUpper().Contains(esrbRating.ToUpper()))
+                    {
+                        tmpGames.Add(g);
+                    }
+                }
             }
 
             return tmpGames; 
@@ -58,11 +63,14 @@ namespace VideoGameLibrary.Data
         {
             List<VideoGame> tmpGames = new List<VideoGame>();
 
-            foreach (var g in GameList)
+            if (!string.IsNullOrEmpty(key))
             {
-                if (g.Title.ToUpper().Contains(key.ToUpper())) //if contains the the searchterm, add to the list and return the list // ToUpper makes all the chars uppercase 
+                foreach (var g in GameList)
                 {
-                    tmpGames.Add(g);
+                    if (g.Title.ToUpper().Contains(key.ToUpper())) //exception thrown here - key was null
+                    {
+                        tmpGames.Add(g);
+                    }
                 }
             }
 

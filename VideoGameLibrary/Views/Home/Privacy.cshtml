@@ -10,13 +10,35 @@
 }
 else
 {
+    <!--
+        form for searching on this page
+        form for filtering on this page
+    -->
+    <div>
+        <form id="search_form" class="blanks" asp-controller="Home" asp-action="SearchGame" method="post">
+            <input id="searchTerm" type="text" name="searchTerm" placeholder="Search Titles" />
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div>
+        <form id="filter_form" class="blanks" asp-controller="Home" asp-action="FilterGames" method="post">
+            <input id="genre" type="text" name="genre" placeholder="Genre" />
+            <input id="platform" type="text" name="platform" placeholder="Platform" />
+            <input id="esrbRating" type="text" name="esrbRating" placeholder="ESRB Rating" />
+
+            <button type="submit">Filter Games</button>
+        </form>
+    </div>
+
     <h2 class="text-center">List of Video Games:</h2>
     <div class="row">
         @foreach (var game in Model)
         {
-        <div class="col-sm-12 col-md-6 col-lg-4 text-center">
-            <h3><partial name="_GamePartialView.cshtml" for="@game" /></h3>
-        </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <h3><partial name="_GamePartialView.cshtml" for="@game" /></h3>
+            </div>
         }
     </div>
 }

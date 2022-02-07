@@ -13,12 +13,12 @@ namespace VideoGameLibrary.Controllers
 {
     public class HomeController : Controller
     {
-        IDataAccessLayer dal = new MockVideoGameDB();
+        IDataAccessLayer dal;// = new MockVideoGameDB();
 
-/*        public HomeController(IDataAccessLayer indal) // needed for assignment 
+        public HomeController(IDataAccessLayer indal) // needed for assignment 
         {
             dal = indal;
-        }*/
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -63,28 +63,23 @@ namespace VideoGameLibrary.Controllers
             return Content("AddGame was called but ModelState is NOT valid."); 
         }
 
+        [HttpPost]
         public IActionResult DeleteGame(int? id)
         {
             dal.DeleteGame(id);
             return View("Privacy", dal.GetCollection()); 
-
-            //return Content("DeleteGame was called.");
         }
 
-        public IActionResult SearchGame(string searchTerm)
+        [HttpPost]
+        public IActionResult SearchGame(string searchTerm) // searchTerm is null when gets called
         {
-            dal.SearchForGames(searchTerm);
-            return View("Privacy", dal.GetCollection()); //probably wrong
-
-            //return Content("SearchGame was called.");
+            return View("Privacy", dal.SearchForGames(searchTerm)); 
         }
 
-        public IActionResult FilterGames(string genre, string platform, string rating)
+        [HttpPost]
+        public IActionResult FilterGames(string genre, string platform, string esrbRating)
         {
-            dal.FilterCollection(genre, platform, rating); 
-            return View("Privacy", dal.GetCollection()); //probably wrong
-
-            //return Content("FilterGames was called.");
+            return View("Privacy", dal.FilterCollection(genre, platform, esrbRating)); 
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
