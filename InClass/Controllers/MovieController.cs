@@ -19,6 +19,12 @@ namespace InClass.Controllers
             dal = indal; 
         }
 
+        public IActionResult Index()
+        {
+            //return View(MovieList);
+            return View(dal.GetMovies().OrderBy(m => m.ReleaseDate).ToList());
+        }
+
         [HttpGet] 
         public IActionResult AddMovie()
         {
@@ -27,17 +33,33 @@ namespace InClass.Controllers
             return View("AddMovie"); 
         }
 
+        [HttpPost]
         public IActionResult AddMovie(Movie movie)
         {
             if (ModelState.IsValid)
             {
                 //MovieList.Add(movie);
-                dal.RemoveMovie(movie.ID); 
+                //dal.RemoveMovie(movie.ID); 
                 dal.AddMovie(movie); 
                 return Redirect("/Movie/Index"); 
             }
 
             return View("MovieForm", movie); 
+        }
+
+        public IActionResult EditMovie(int id)
+        {
+            Movie m;
+            m = dal.GetMovie(id);
+            dal.RemoveMovie(id);
+
+            return View("MovieForm", m);
+        }
+
+        public IActionResult DeleteMovie(int? id)
+        {
+            dal.RemoveMovie(id);
+            return View("Index", dal.GetMovies());
         }
 
         public IActionResult MovieForm()
@@ -48,27 +70,6 @@ namespace InClass.Controllers
         public IActionResult Search(string searchTerm)
         {
             return View();
-        }
-
-        public IActionResult EditMovie(int id)
-        {
-            Movie m;
-            m = dal.GetMovie(id);
-            dal.RemoveMovie(id); 
-
-            return View("MovieForm", m);
-        }
-
-        public IActionResult DeleteMovie(int? id)
-        {
-            dal.RemoveMovie(id); 
-            return View("Index", dal.GetMovies());
-        }
-
-        public IActionResult Index()
-        {
-            //return View(MovieList);
-            return View(dal.GetMovies().OrderBy(m => m.ReleaseDate).ToList()); 
         }
 
         public IActionResult DisplayMovie()

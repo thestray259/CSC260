@@ -17,6 +17,10 @@ namespace VideoGameLibrary.Models
         public string LoanedTo { get; set; } = null;
         public DateTime? LoanDate { get; set; } //= null; 
 
+        public static int nextId = 0;
+        private int id = nextId++;
+        public int? ID { get { return id; } }
+
         public VideoGame() { }
 
         public VideoGame(string title, string platform, string genre, string rating, int year, string image, string loanedTo, DateTime loanDate)

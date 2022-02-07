@@ -19,6 +19,7 @@ namespace InClass.Data
 
         public void AddMovie(Movie movie)
         {
+            MovieList.Remove(movie); 
             MovieList.Add(movie); 
         }
 

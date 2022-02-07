@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InClass.Models
 {
-    [NinetysMovieRating]
+    //[NinetysMovieRating]
     public class Movie
     {
         public static int nextId = 0;

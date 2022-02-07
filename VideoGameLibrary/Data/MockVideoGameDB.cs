@@ -26,12 +26,27 @@ namespace VideoGameLibrary.Data
 
         public void DeleteGame(int? id)
         {
-            throw new NotImplementedException();
+            var foundGame = GetGame(id);
+            if (foundGame != null)
+            {
+                GameList.Remove(foundGame);
+            }
         }
 
         public IEnumerable<VideoGame> FilterCollection(string genre, string platform, string esrbRating)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            List<VideoGame> tmpGames = new List<VideoGame>();
+
+            foreach (var g in GameList)
+            {
+                if (g.Genre.ToUpper() == genre.ToUpper()) tmpGames.Add(g); 
+                if (g.Platform.ToUpper() == platform.ToUpper()) tmpGames.Add(g); 
+                if (g.Rating.ToUpper() == esrbRating.ToUpper()) tmpGames.Add(g); 
+            }
+
+            return tmpGames; 
         }
 
         public IEnumerable<VideoGame> GetCollection()
@@ -41,7 +56,35 @@ namespace VideoGameLibrary.Data
 
         public IEnumerable<VideoGame> SearchForGames(string key)
         {
-            throw new NotImplementedException();
+            List<VideoGame> tmpGames = new List<VideoGame>();
+
+            foreach (var g in GameList)
+            {
+                if (g.Title.ToUpper().Contains(key.ToUpper())) //if contains the the searchterm, add to the list and return the list // ToUpper makes all the chars uppercase 
+                {
+                    tmpGames.Add(g);
+                }
+            }
+
+            return tmpGames;
+        }
+
+        public VideoGame GetGame(int? id)
+        {
+            VideoGame foundGame = null;
+
+            if (id != null)
+            {
+                GameList.ForEach(m =>
+                {
+                    if (m.ID == id)
+                    {
+                        foundGame = m;
+                    }
+                });
+            }
+
+            return foundGame;
         }
     }
 }

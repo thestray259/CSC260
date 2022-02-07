@@ -6,17 +6,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using VideoGameLibrary.Models;
+using VideoGameLibrary.Interfaces;
+using VideoGameLibrary.Data; 
 
 namespace VideoGameLibrary.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        IDataAccessLayer dal = new MockVideoGameDB();
 
-        public HomeController(ILogger<HomeController> logger)
+/*        public HomeController(IDataAccessLayer indal) // needed for assignment 
         {
-            _logger = logger;
-        }
+            dal = indal;
+        }*/
 
         [HttpGet]
         public IActionResult Index()
@@ -26,23 +28,27 @@ namespace VideoGameLibrary.Controllers
 
         public IActionResult Privacy()
         {
-            return View(GameList);
+            return View(dal.GetCollection()); 
         }
 
         [HttpPost]
         public IActionResult ReturnGame(string title)
         {
-            var game = GameList.Find(x => x.Title == title);
-            game.ReturnGame(); 
-            return View("Privacy", GameList);
+/*            var game = GameList.Find(x => x.Title == title);
+            game.ReturnGame();
+            return View("Privacy", GameList);*/
+
+            return View();
         }
 
         [HttpPost]
         public IActionResult LoanGame(string title, string loaner)
         {
-            var game = GameList.Find(x => x.Title == title);
+/*            var game = GameList.Find(x => x.Title == title);
             game.Loan(loaner);
-            return View("Privacy", GameList);
+            return View("Privacy", GameList);*/
+
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
