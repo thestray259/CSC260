@@ -10,7 +10,7 @@ namespace VideoGameLibrary.Data
     public class MockVideoGameDB : IDataAccessLayer
     {
         public static DateTime dateTime = DateTime.Now;
-        private static List<VideoGame> GameList = new List<VideoGame>
+        public static List<VideoGame> GameList = new List<VideoGame>
         {
             new VideoGame("Genshin Impact", "PC", "Adventure Role-Playing", "T", 2020, "genshin.jfif"),
             new VideoGame("Kingdom Hearts", "PlayStation2", "Action Role-Playing", "E10+", 2002, "kingdom_hearts.jpg"),

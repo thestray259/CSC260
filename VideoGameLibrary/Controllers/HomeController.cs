@@ -37,7 +37,7 @@ namespace VideoGameLibrary.Controllers
 /*            var game = GameList.Find(x => x.Title == title);
             game.ReturnGame();
             return View("Privacy", GameList);*/
-
+            
             return View();
         }
 
@@ -49,6 +49,42 @@ namespace VideoGameLibrary.Controllers
             return View("Privacy", GameList);*/
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddGame(VideoGame game)
+        {
+            if (ModelState.IsValid)
+            {
+                dal.AddGame(game);
+                return Redirect("/Home/Privacy"); 
+            }
+
+            return Content("AddGame was called but ModelState is NOT valid."); 
+        }
+
+        public IActionResult DeleteGame(int? id)
+        {
+            dal.DeleteGame(id);
+            return View("Privacy", dal.GetCollection()); 
+
+            //return Content("DeleteGame was called.");
+        }
+
+        public IActionResult SearchGame(string searchTerm)
+        {
+            dal.SearchForGames(searchTerm);
+            return View("Privacy", dal.GetCollection()); //probably wrong
+
+            //return Content("SearchGame was called.");
+        }
+
+        public IActionResult FilterGames(string genre, string platform, string rating)
+        {
+            dal.FilterCollection(genre, platform, rating); 
+            return View("Privacy", dal.GetCollection()); //probably wrong
+
+            //return Content("FilterGames was called.");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
