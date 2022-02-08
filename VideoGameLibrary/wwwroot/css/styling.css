@@ -39,9 +39,13 @@ header {
     background-color: #353735; 
 }
 
-#searchTerm {
-    padding: 25px; 
-    margin-bottom: 25px; 
+#add_game {
+    padding: 10px; 
+    margin-bottom: 20px; 
+}
+
+#delete_game {
+    padding: 10px;
 }
 
 /*#search_form {

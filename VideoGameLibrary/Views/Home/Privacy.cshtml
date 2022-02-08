@@ -10,19 +10,19 @@
 }
 else
 {
-    <div class="text-center">
+@*    <div class="text-center">
         <form id="search_form" class="blanks" asp-controller="Home" asp-action="SearchGame" method="post">
             <input id="searchTerm" class="textBox" type="text" name="searchTerm" placeholder="Search Titles" />
 
             <button type="submit">Search</button>
         </form>
-    </div>
+    </div>*@
 
     <div class="text-center">
         <form id="filter_form" class="blanks" asp-controller="Home" asp-action="FilterGames" method="post">
-            <input id="genre" class="textBox" type="text" name="genre" placeholder="Genre" />
-            <input id="platform" class="textBox" type="text" name="platform" placeholder="Platform" />
-            <input id="esrbRating" class="textBox" type="text" name="esrbRating" placeholder="ESRB Rating" />
+            <input id="genre" class="" type="text" name="genre" placeholder="Genre" />
+            <input id="platform" class="" type="text" name="platform" placeholder="Platform" />
+            <input id="esrbRating" class="" type="text" name="esrbRating" placeholder="ESRB Rating" />
 
             <button type="submit">Filter Games</button>
         </form>
