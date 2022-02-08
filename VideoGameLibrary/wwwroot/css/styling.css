@@ -38,3 +38,22 @@ header {
     color: #F8F3F2; 
     background-color: #353735; 
 }
+
+#searchTerm {
+    padding: 25px; 
+    margin-bottom: 25px; 
+}
+
+/*#search_form {
+    padding: 25px; 
+    margin: 25px; 
+}
+
+#filter_form {
+    padding: 25px; 
+    margin: 25px; 
+}*/
+
+/*.blanks {
+    margin: 25px; 
+}*/

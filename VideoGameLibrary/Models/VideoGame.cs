@@ -7,12 +7,12 @@ namespace VideoGameLibrary.Models
 {
     public class VideoGame 
     {
-        public string Title { get; set; } = "NO TITLE"; 
-        public string Platform { get; set; } = "NO PLATFORM"; 
-        public string Genre { get; set; } = "NO GENRE"; 
-        public string Rating { get; set; } = "NOT RATED";
+        public string Title { get; set; } //= "NO TITLE"; 
+        public string Platform { get; set; } //= "NO PLATFORM"; 
+        public string Genre { get; set; } //= "NO GENRE"; 
+        public string Rating { get; set; } //= "NOT RATED";
         public int YearOfRelease { get; set; }
-        public string ImageName { get; set; }
+        public string ImageName { get; set; } = "no_image.jpg"; 
 
         public string LoanedTo { get; set; } = null;
         public DateTime? LoanDate { get; set; } //= null; 

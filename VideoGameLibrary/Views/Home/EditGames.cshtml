@@ -1,0 +1,23 @@
+﻿@model VideoGame
+@{
+    ViewData["Title"] = "Edit Collection";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div>
+    <form id="add_game" class="blanks" asp-controller="Home" asp-action="AddGame" method="post">
+        <input asp-for="Title" placeholder="Title"/>
+        <input asp-for="Genre" placeholder="Genre"/>
+        <input asp-for="Platform" placeholder="Platform"/>
+        <input asp-for="Rating" placeholder="ESRB Rating"/>
+        <input asp-for="YearOfRelease" placeholder="Release Year"/>
+
+        <button type="submit">Add Game</button>
+    </form>
+    <form id="delete_game" class="blanks" asp-controller="Home" asp-action="DeleteGame" method="post">
+        <input id="delete_id" type="text" name="id" placeholder="ID"/>
+
+        <button type="submit">Delete Game</button>
+    </form>
+</div>

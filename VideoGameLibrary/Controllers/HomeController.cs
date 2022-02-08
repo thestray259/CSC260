@@ -13,9 +13,9 @@ namespace VideoGameLibrary.Controllers
 {
     public class HomeController : Controller
     {
-        IDataAccessLayer dal;// = new MockVideoGameDB();
+        IDataAccessLayer dal;
 
-        public HomeController(IDataAccessLayer indal) // needed for assignment 
+        public HomeController(IDataAccessLayer indal) 
         {
             dal = indal;
         }
@@ -34,21 +34,15 @@ namespace VideoGameLibrary.Controllers
         [HttpPost]
         public IActionResult ReturnGame(string title)
         {
-/*            var game = GameList.Find(x => x.Title == title);
-            game.ReturnGame();
-            return View("Privacy", GameList);*/
-            
-            return View();
+            dal.ReturnGame(title); 
+            return View("Privacy", dal.GetCollection());
         }
 
         [HttpPost]
         public IActionResult LoanGame(string title, string loaner)
         {
-/*            var game = GameList.Find(x => x.Title == title);
-            game.Loan(loaner);
-            return View("Privacy", GameList);*/
-
-            return View();
+            dal.LoanGame(title, loaner); 
+            return View("Privacy", dal.GetCollection());
         }
 
         [HttpPost]
@@ -71,7 +65,7 @@ namespace VideoGameLibrary.Controllers
         }
 
         [HttpPost]
-        public IActionResult SearchGame(string searchTerm) // searchTerm is null when gets called
+        public IActionResult SearchGame(string searchTerm) 
         {
             return View("Privacy", dal.SearchForGames(searchTerm)); 
         }
@@ -80,6 +74,11 @@ namespace VideoGameLibrary.Controllers
         public IActionResult FilterGames(string genre, string platform, string esrbRating)
         {
             return View("Privacy", dal.FilterCollection(genre, platform, esrbRating)); 
+        }
+
+        public IActionResult EditGames()
+        {
+            return View(); 
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -21,6 +21,7 @@ namespace VideoGameLibrary.Data
 
         public void AddGame(VideoGame videoGame)
         {
+            GameList.Remove(videoGame); 
             GameList.Add(videoGame); 
         }
 
@@ -93,6 +94,22 @@ namespace VideoGameLibrary.Data
             }
 
             return foundGame;
+        }
+
+        public void ReturnGame(string title)
+        {
+            //throw new NotImplementedException();
+
+            var game = GameList.Find(x => x.Title == title);
+            game.ReturnGame();
+        }
+
+        public void LoanGame(string title, string loaner)
+        {
+            //throw new NotImplementedException();
+
+            var game = GameList.Find(x => x.Title == title);
+            game.Loan(loaner);
         }
     }
 }
