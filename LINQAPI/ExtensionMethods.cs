@@ -24,7 +24,7 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The collection of Students with the same gender as the parameter</returns>
         public static IEnumerable<Student> GetStudentsByGender(this IEnumerable<Student> students, Genders gender)
         {
-			throw new NotImplementedException();
+            return students.Where(s => s.Gender == gender); 
         }
 
         /// <summary>
@@ -97,7 +97,8 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The collection of Person objects that are actually Students</returns>
         public static IEnumerable<Student> FindTheStudents(this IEnumerable<Person> people)
         {
-            throw new NotImplementedException();
+            //return people.Where(s => s.GetType() == typeof(Student)).Cast<Student>().ToList();
+            return people.OfType<Student>(); 
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// </summary>
         /// <param name="people">The original collection of people</param>
         /// <returns>The percentage of Person objects that are also Students expressed as a float less than or equal to 1.0</returns>
-        public static float CurrentPercentageOfPeopleInSchool(this IEnumerable<Person> people)
+        public static float CurrentPercentageOfPeopleInSchool(this IEnumerable<Person> people) // used 3 lines
         {
             throw new NotImplementedException();
         }
@@ -117,7 +118,9 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>A Dictionary where the key is the sign and the value is the number of people born under it</returns>
         public static Dictionary<ZodiacSign, int> NumberOfPeopleByBirthSign(this IEnumerable<Person> people)
         {
-            throw new NotImplementedException();
+            return people.GroupBy(BirthSign).Select(signs => 
+            new { Sign = signs.Key, Count = signs.Count() }).
+            ToDictionary(t => t.Sign, t => t.Count); 
         }
 
         //HELPER METHOD - You do not need to use LINQ for this.
@@ -128,7 +131,23 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The ZodiacSign enum value for the target Person object</returns>
         public static ZodiacSign BirthSign(this Person p)
         {
-            throw new NotImplementedException();
+            int year = p.Birthdate.Year;
+            DateTime birthday = p.Birthdate; 
+
+            if (birthday >= new DateTime(year, 3, 21) && birthday <= new DateTime(year, 4, 20))
+            {
+                return ZodiacSign.Aries; 
+            }
+            else if (birthday >= new DateTime(year, 4, 21) && birthday <= new DateTime(year, 5, 21))
+            {
+                return ZodiacSign.Taurus;
+            }
+            // rest of the zodiacs here in else if's
+            else
+            {
+                Console.WriteLine(birthday.ToShortDateString()); 
+                return ZodiacSign.Saggitarius; 
+            }
         }
     }
 }
