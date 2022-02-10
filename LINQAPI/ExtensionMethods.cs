@@ -36,7 +36,7 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The collection of Students that match the criteria</returns>
         public static IEnumerable<Student> GetStudentsByAgeRange(this IEnumerable<Student> students, int minYearsOld, int maxYearsOld)
         {
-            throw new NotImplementedException();
+            return students.Where(s => s.Age >= minYearsOld && s.Age <= maxYearsOld); 
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The collection of students not currently passing</returns>
         public static IEnumerable<Student> GetTheFailingStudents(this IEnumerable<Student> students)
         {
-            throw new NotImplementedException();
+            return students.Where(s => s.GPA > 2.0f); 
         }
 
         /// <summary>
@@ -56,6 +56,10 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>A Dictionary where the key is the ClassLevel and the value is the number of students in that level</returns>
         public static Dictionary<ClassLevel, int> StudentsPerClassLevel(this IEnumerable<Student> students)
         {
+            /*            return students.GroupBy(students.Level).Select(s => 
+                        new { ClassLevel = s.Key, Count = s.Count() }).
+                        ToDictionary(t => t.classLevel, t => t.Count);*/
+
             throw new NotImplementedException();
         }
 
@@ -87,7 +91,7 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The collection of students that are under the age of 18</returns>
         public static IEnumerable<Student> UnderageStudents(this IEnumerable<Student> students)
         {
-            throw new NotImplementedException();
+            return students.Where(s => s.Age > 18.0f); 
         }
 
         /// <summary>
@@ -134,19 +138,54 @@ namespace LINQRefresher_v3.ExtensionMethods
             int year = p.Birthdate.Year;
             DateTime birthday = p.Birthdate; 
 
-            if (birthday >= new DateTime(year, 3, 21) && birthday <= new DateTime(year, 4, 20))
+            if (birthday >= new DateTime(year, 3, 21) && birthday <= new DateTime(year, 4, 19))
             {
                 return ZodiacSign.Aries; 
             }
-            else if (birthday >= new DateTime(year, 4, 21) && birthday <= new DateTime(year, 5, 21))
+            else if (birthday >= new DateTime(year, 4, 20) && birthday <= new DateTime(year, 5, 20))
             {
                 return ZodiacSign.Taurus;
             }
-            // rest of the zodiacs here in else if's
+            else if (birthday >= new DateTime(year, 5, 21) && birthday <= new DateTime(year, 6, 20))
+            {
+                return ZodiacSign.Gemini;
+            }
+            else if (birthday >= new DateTime(year, 6, 21) && birthday <= new DateTime(year, 7, 22))
+            {
+                return ZodiacSign.Cancer;
+            }
+            else if (birthday >= new DateTime(year, 7, 23) && birthday <= new DateTime(year, 8, 22))
+            {
+                return ZodiacSign.Leo;
+            }
+            else if (birthday >= new DateTime(year, 8, 23) && birthday <= new DateTime(year, 9, 22))
+            {
+                return ZodiacSign.Virgo;
+            }
+            else if (birthday >= new DateTime(year, 9, 23) && birthday <= new DateTime(year, 10, 22))
+            {
+                return ZodiacSign.Libra;
+            }
+            else if (birthday >= new DateTime(year, 10, 23) && birthday <= new DateTime(year, 11, 21))
+            {
+                return ZodiacSign.Scorpio;
+            }
+            else if (birthday >= new DateTime(year, 11, 22) && birthday <= new DateTime(year, 12, 21))
+            {
+                return ZodiacSign.Saggitarius;
+            }
+            else if (birthday >= new DateTime(year, 12, 22) && birthday <= new DateTime(year, 1, 19))
+            {
+                return ZodiacSign.Capricorn;
+            }
+            else if (birthday >= new DateTime(year, 1, 20) && birthday <= new DateTime(year, 2, 18))
+            {
+                return ZodiacSign.Aquarius;
+            }
             else
             {
                 Console.WriteLine(birthday.ToShortDateString()); 
-                return ZodiacSign.Saggitarius; 
+                return ZodiacSign.Pisces; 
             }
         }
     }
