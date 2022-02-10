@@ -10,13 +10,12 @@ namespace InClass.Models
     //[NinetysMovieRating]
     public class Movie
     {
-        public static int nextId = 0;
+        //public static int nextId = 0;
 
-        private int id = nextId++; 
+        //private int id = nextId++; 
+        [Required]
+        public int ID { get; set; }
 
-        public int? ID { get { return id; } }
-
-        //model validations list online for ASP.NET
         //[Required(ErrorMessage = "Hey Dummy, the Title is Required")]
         public string Title { get; set; } //= "NO TITLE";
         //[Range(1850, 2022, ErrorMessage ="Year must be between 1850 and 2022")]

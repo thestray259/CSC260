@@ -56,11 +56,9 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>A Dictionary where the key is the ClassLevel and the value is the number of students in that level</returns>
         public static Dictionary<ClassLevel, int> StudentsPerClassLevel(this IEnumerable<Student> students)
         {
-            /*            return students.GroupBy(students.Level).Select(s => 
-                        new { ClassLevel = s.Key, Count = s.Count() }).
-                        ToDictionary(t => t.classLevel, t => t.Count);*/
-
-            throw new NotImplementedException();
+            return students.GroupBy(st => st.Level).Select(s =>
+            new { ClassLevel = s.Key, Count = s.Count() }).
+            ToDictionary(t => t.ClassLevel, t => t.Count);
         }
 
         /// <summary>
@@ -82,6 +80,8 @@ namespace LINQRefresher_v3.ExtensionMethods
         public static IEnumerable<Student> TopOfTheClass(this IEnumerable<Student> students, int count)
         {
             throw new NotImplementedException();
+
+            //return students.Where(s => ).Take(count); 
         }
 
         /// <summary>

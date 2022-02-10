@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InClass.Interfaces; 
-using InClass.Data; 
+using InClass.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace InClass
 {
@@ -26,6 +27,11 @@ namespace InClass
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<MovieContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("MovieDB"));
+            }); 
+
             services.AddTransient<IDataAccessLayer, MovieListDAL>(); 
         }
 
