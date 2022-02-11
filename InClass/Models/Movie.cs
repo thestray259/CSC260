@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace InClass.Models
         public int ID { get; set; }
 
         //[Required(ErrorMessage = "Hey Dummy, the Title is Required")]
+        [Column(TypeName = "varchar(500)")]
         public string Title { get; set; } //= "NO TITLE";
         //[Range(1850, 2022, ErrorMessage ="Year must be between 1850 and 2022")]
         public int Year { get; set; } //= 1850;

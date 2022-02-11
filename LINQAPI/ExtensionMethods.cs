@@ -68,7 +68,12 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The MaritalStatus value with the highest average GPA</returns>
         public static MaritalStatus MaritalStatusWithHighestAverageGPA(this IEnumerable<Student> students)
         {
-            throw new NotImplementedException();
+            return students.GroupBy(s => s.Relationship).Select(group =>
+            new { Status = group.Key, AverageGPA = group.Average(g => g.GPA) })
+                .OrderByDescending(g => g.AverageGPA).FirstOrDefault().Status; 
+
+            // David's code
+            // return students.GroupBy(student => student.Relationship).OrderByDescending(status => status.Average(p => p.GPA)).First().Key; 
         }
 
         /// <summary>
@@ -79,9 +84,14 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The collection of the top students</returns>
         public static IEnumerable<Student> TopOfTheClass(this IEnumerable<Student> students, int count)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
-            //return students.Where(s => ).Take(count); 
+            return students.GroupBy(lev => lev.Level).Select(group =>
+            new { Level = group.Key, Students = group.OrderByDescending(s => s.GPA).Take(count) })
+                .SelectMany(x => x.Students);
+
+            // David's code
+            //return students.GroupBy(student => student.Level).Select(s => s.OrderByDescending(stu => stu.GPA).Take(count)).SelectMany(x => x); 
         }
 
         /// <summary>
@@ -112,7 +122,10 @@ namespace LINQRefresher_v3.ExtensionMethods
         /// <returns>The percentage of Person objects that are also Students expressed as a float less than or equal to 1.0</returns>
         public static float CurrentPercentageOfPeopleInSchool(this IEnumerable<Person> people) // used 3 lines
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            float percentage = (people.FindTheStudents().Count() / people.Count()) * 100;
+            return percentage; 
         }
 
         /// <summary>
