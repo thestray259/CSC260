@@ -11,6 +11,7 @@ namespace InClass.Interfaces
         IEnumerable<Movie> GetMovies();
         void AddMovie(Movie movie);
         void RemoveMovie(int? id);
-        Movie GetMovie(int? id); 
+        Movie GetMovie(int? id);
+        void UpdateMovie(Movie movie); 
     }
 }

@@ -9,23 +9,35 @@ namespace InClass.Data
 {
     public class MovieListDAL : IDataAccessLayer
     {
-        public static List<Movie> MovieList = new List<Movie>
+        /*        public static List<Movie> MovieList = new List<Movie>
+                {
+                    new Movie("Iron Man", 2008, 5.0f),
+                    new Movie("Blob", 2019, 5.0f),
+                    new Movie("Man", 2003, 2.1f),
+                    new Movie("Rando", 1998, 3.8f)
+                };*/
+
+        private MovieContext db; 
+
+        public MovieListDAL(MovieContext indb)
         {
-            new Movie("Iron Man", 2008, 5.0f),
-            new Movie("Blob", 2019, 5.0f),
-            new Movie("Man", 2003, 2.1f),
-            new Movie("Rando", 1998, 3.8f)
-        };
+            this.db = indb; 
+        }
 
         public void AddMovie(Movie movie)
         {
-            MovieList.Remove(movie); 
-            MovieList.Add(movie); 
+            movie.ID = 0; // Might need this, might not 
+            db.Add(movie);
+            db.SaveChanges(); 
+            //MovieList.Remove(movie); 
+            //MovieList.Add(movie); 
         }
 
         public Movie GetMovie(int? id)
         {
-            Movie foundMovie = null; 
+            return db.Movies.FirstOrDefault(m => m.ID == id); 
+
+/*            Movie foundMovie = null; 
 
             if (id != null)
             {
@@ -33,46 +45,53 @@ namespace InClass.Data
                 {
                     if (m.ID == id)
                     {
-                        foundMovie = m; 
+                        foundMovie = m;
                     }
                 });
             }
-            return foundMovie; 
+            return foundMovie; */
         }
 
         public IEnumerable<Movie> GetMovies()
         {
-            return MovieList; 
+            return db.Movies.ToList();
         }
 
         public void RemoveMovie(int? id)
         {
-            var foundMovie = GetMovie(id); 
+            if (id > 0)
+            {
+                db.Movies.Remove(db.Movies.Find(id));
+                db.SaveChanges(); 
+            }
+
+/*            var foundMovie = GetMovie(id); 
             if (foundMovie != null)
             {
                 MovieList.Remove(foundMovie); 
-            }
+            }*/
         }
 
-        public IEnumerable<Movie> Search(string searchTerm)
+        public void UpdateMovie(Movie movie)
         {
-            //string.IsNullOrEmpty(strTitle) // check to make sure there's something there
-            List<Movie> tmpMovies = new List<Movie>(); 
-
-            foreach (var g in MovieList)
-            {
-                if (g.Title.ToUpper().Contains(searchTerm.ToUpper())) //if contains the the searchterm, add to the list and return the list // ToUpper makes all the chars uppercase 
-                {
-                    tmpMovies.Add(g); 
-                }
-            }
-
-            return tmpMovies;
-
-            // these are the doing the same thing as the above code 
-            //return MovieList.Where(g => g.Title.ToUpper().Contains(searchTerm.ToUpper())).ToList(); 
-            //return MovieList.Contains(g => g.Title.ToUpper().Contains(searchTerm.ToUpper())).ToList(); 
-            //return MovieList.FindAll(g => g.Title.ToUpper().Contains(searchTerm.ToUpper())).ToList(); 
+            db.Update(movie);
+            db.SaveChanges();
         }
+
+        /*        public IEnumerable<Movie> Search(string searchTerm)
+                {
+                    //string.IsNullOrEmpty(strTitle) // check to make sure there's something there
+                    List<Movie> tmpMovies = new List<Movie>(); 
+
+        *//*            foreach (var g in MovieList)
+                    {
+                        if (g.Title.ToUpper().Contains(searchTerm.ToUpper())) //if contains the the searchterm, add to the list and return the list // ToUpper makes all the chars uppercase 
+                        {
+                            tmpMovies.Add(g); 
+                        }
+                    }*//*
+
+                    return tmpMovies;
+                }*/
     }
 }

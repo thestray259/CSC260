@@ -28,8 +28,6 @@ namespace InClass.Controllers
         [HttpGet] 
         public IActionResult AddMovie()
         {
-            //Movie m = new Movie("Spider-Man", 2002, 4.99f); 
-            //return View("MovieForm", m);
             return View("AddMovie"); 
         }
 
@@ -38,8 +36,6 @@ namespace InClass.Controllers
         {
             if (ModelState.IsValid)
             {
-                //MovieList.Add(movie);
-                //dal.RemoveMovie(movie.ID); 
                 dal.AddMovie(movie); 
                 return Redirect("/Movie/Index"); 
             }
@@ -51,9 +47,22 @@ namespace InClass.Controllers
         {
             Movie m;
             m = dal.GetMovie(id);
-            dal.RemoveMovie(id);
+            ViewBag.Mode = "Edit";
+            ViewBag.ID = id; 
 
             return View("MovieForm", m);
+        }
+
+        // does the save of the existing record 
+        public IActionResult UpdateMovie(Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                dal.UpdateMovie(movie);
+                return Redirect("/Movie/Index"); 
+            }
+
+            return View("MovieForm", movie); 
         }
 
         public IActionResult DeleteMovie(int? id)

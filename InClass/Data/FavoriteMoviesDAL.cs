@@ -52,5 +52,10 @@ namespace InClass.Data
                 MovieList.Remove(foundMovie);
             }
         }
+
+        public void UpdateMovie(Movie movie)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

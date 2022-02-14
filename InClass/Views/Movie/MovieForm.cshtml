@@ -1,5 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Movie
 @{
+    string strAction = "";
+    if (ViewBag.Mode == "Edit")
+    {
+        strAction = "Updatemovie"; 
+        <h3>Update Movie</h3>
+    }
+    else
+    {
+        ViewBag.ID = 0;
+        strAction = "AddMovie"; 
+        <h3>Add Movie</h3>
+    }
 }
+
+<div class="error-messages" asp-validation-summary="All"></div>
+<form asp-controller="Movie" asp-action="@strAction" method="post">
+    <input asp-for="ID" value="@ViewBag.ID" hidden />
+    <input asp-for="Title" placeholder="Title" />
+        <span asp-validation-for="Title" class="error-messages"></span>
+    <input asp-for="Year" placeholder="Year" />
+    <input asp-for="Rating" placeholder="Rating" />
+    <button type="submit">Save</button>
+</form>
