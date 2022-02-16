@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,11 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InClass.Interfaces; 
-using InClass.Data;
-using Microsoft.EntityFrameworkCore;
+using TestID.Data;
 
-namespace InClass
+namespace TestID
 {
     public class Startup
     {
@@ -26,13 +27,14 @@ namespace InClass
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddDbContext<MovieContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("MovieDB"));
-            }); 
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddTransient<IDataAccessLayer, MovieListDAL>(); 
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +43,7 @@ namespace InClass
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -53,31 +56,11 @@ namespace InClass
 
             app.UseRouting();
 
-            app.UseAuthentication(); 
+            app.UseAuthentication(); // make sure this exists
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                /*                endpoints.MapControllerRoute(
-                                    name: "PizzaToTest",
-                                    //pattern: "pizza",
-                                    //pattern: "pizza{id}", // ex pizza5 
-                                    //pattern: "pizza/{id?}", // ex pizza/5
-                                    pattern: "pizza/{id:int?}", // ex pizza/5 but has to be slash number 
-                                    defaults: new { controller = "Home", action="Test" });*/
-
-                /* endpoints.MapControllerRoute(
-name: "catchall",
-pattern: "{*catchall}", // could be anything instead of catchall 
-defaults: new { controller = "home", action = "error" }
-);*/
-
-                /*                endpoints.MapControllerRoute(
-                    name: "many", 
-                    pattern: "colors/{*colors}",
-                    defaults: new { controller = "Home", action = "Colors" }
-                    ); */
-
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

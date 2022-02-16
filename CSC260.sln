@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoutingExercise", "RoutingE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validation", "Validation\Validation.csproj", "{0A73D254-70C3-423D-9AF0-F3C3AD1EF791}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQAPI", "LINQAPI\LINQAPI.csproj", "{B82DDDA8-3D30-4473-81A9-208124F88325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LINQAPI", "LINQAPI\LINQAPI.csproj", "{B82DDDA8-3D30-4473-81A9-208124F88325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestID", "TestID\TestID.csproj", "{82FC906D-F100-4F43-8666-461E718C74F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B82DDDA8-3D30-4473-81A9-208124F88325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B82DDDA8-3D30-4473-81A9-208124F88325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B82DDDA8-3D30-4473-81A9-208124F88325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82FC906D-F100-4F43-8666-461E718C74F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82FC906D-F100-4F43-8666-461E718C74F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82FC906D-F100-4F43-8666-461E718C74F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82FC906D-F100-4F43-8666-461E718C74F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
