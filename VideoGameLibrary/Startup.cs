@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VideoGameLibrary.Interfaces;
-using VideoGameLibrary.Data; 
+using VideoGameLibrary.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace VideoGameLibrary
 {
@@ -26,6 +27,11 @@ namespace VideoGameLibrary
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<VideoGameContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("VideoGameDB")); 
+            });
+
             services.AddTransient<IDataAccessLayer, MockVideoGameDB>(); 
         }
 

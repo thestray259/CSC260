@@ -14,6 +14,8 @@ namespace VideoGameLibrary.Interfaces
         void AddGame(VideoGame videoGame);
         void DeleteGame(int? id);
         void ReturnGame(string title);
-        void LoanGame(string title, string loaner); 
+        void LoanGame(string title, string loaner);
+        void UpdateGame(VideoGame videoGame);
+        VideoGame GetGame(int? id); 
     }
 }

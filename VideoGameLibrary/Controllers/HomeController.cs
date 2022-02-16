@@ -76,6 +76,27 @@ namespace VideoGameLibrary.Controllers
             return View("Privacy", dal.FilterCollection(genre, platform, esrbRating)); 
         }
 
+        public IActionResult EditGame(int id)
+        {
+            VideoGame m;
+            m = dal.GetGame(id);
+            ViewBag.Mode = "Edit";
+            ViewBag.ID = id;
+
+            return View("EditGames", m);
+        }
+
+        public IActionResult UpdateGame(VideoGame videoGame)
+        {
+            if (ModelState.IsValid)
+            {
+                dal.UpdateGame(videoGame);
+                return Redirect("/Home/Privacy");
+            }
+
+            return View("EditGames", videoGame); 
+        }
+
         public IActionResult EditGames()
         {
             return View(); 

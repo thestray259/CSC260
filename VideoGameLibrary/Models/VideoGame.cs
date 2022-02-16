@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,19 +9,25 @@ namespace VideoGameLibrary.Models
 {
     public class VideoGame 
     {
-        public string Title { get; set; } //= "NO TITLE"; 
-        public string Platform { get; set; } //= "NO PLATFORM"; 
-        public string Genre { get; set; } //= "NO GENRE"; 
-        public string Rating { get; set; } //= "NOT RATED";
+        [Required] [Column(TypeName = "varchar(50)")]
+        public string Title { get; set; } 
+        [Required] [Column(TypeName = "varchar(15)")]
+        public string Platform { get; set; } 
+        [Required] [Column(TypeName = "varchar(100)")]
+        public string Genre { get; set; } 
+        [Required] [Column(TypeName = "varchar(10)")]
+        public string Rating { get; set; } 
+        [Required]
         public int YearOfRelease { get; set; }
-        public string ImageName { get; set; } = "no_image.jpg"; 
+        [Required] [Column(TypeName = "varchar(75)")]
+        public string ImageName { get; set; } = "no_image.jpg";
 
+        [Column(TypeName = "varchar(20)")]
         public string LoanedTo { get; set; } = null;
-        public DateTime? LoanDate { get; set; } //= null; 
+        public DateTime? LoanDate { get; set; } 
 
-        public static int nextId = 0;
-        private int id = nextId++;
-        public int? ID { get { return id; } }
+        [Required]
+        public int ID { get; set; }
 
         public VideoGame() { }
 
