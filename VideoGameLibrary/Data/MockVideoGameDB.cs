@@ -86,11 +86,6 @@ namespace VideoGameLibrary.Data
             return tmpGames;
         }
 
-/*        public VideoGame GetGame(int? id)
-        {
-            
-        }*/
-
         public void ReturnGame(string title)
         {
             //var game = GameList.Find(x => x.Title == title);

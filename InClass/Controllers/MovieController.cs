@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InClass.Interfaces;
-using InClass.Data; 
+using InClass.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InClass.Controllers
 {
+    [Authorize]
     public class MovieController : Controller
     {
         //IDataAccessLayer dal = new MovieListDAL(); //bad because of hard coding 
