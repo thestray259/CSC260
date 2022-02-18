@@ -33,9 +33,13 @@ namespace InClass.Data
             //MovieList.Add(movie); 
         }
 
-        public Movie GetMovie(int? id)
+        public Movie GetMovie(string userId, int? id)
         {
-            return db.Movies.FirstOrDefault(m => m.ID == id); 
+            return db.Movies
+                .Where(m => m.ID == id && m.UserID == userId)
+                .FirstOrDefault(); 
+
+            //return db.Movies.FirstOrDefault(m => m.ID == id); 
 
 /*            Movie foundMovie = null; 
 
@@ -52,16 +56,17 @@ namespace InClass.Data
             return foundMovie; */
         }
 
-        public IEnumerable<Movie> GetMovies()
+        public IEnumerable<Movie> GetMovies(string userId)
         {
-            return db.Movies.ToList();
+            return db.Movies.Where(m => m.UserID == userId).ToList();
         }
 
-        public void RemoveMovie(int? id)
+        public void RemoveMovie(string userId, int? id)
         {
-            if (id > 0)
+            Movie foundMovie = GetMovie(userId, id); 
+            if (foundMovie != null)
             {
-                db.Movies.Remove(db.Movies.Find(id));
+                db.Movies.Remove(foundMovie);
                 db.SaveChanges(); 
             }
 
@@ -72,8 +77,9 @@ namespace InClass.Data
             }*/
         }
 
-        public void UpdateMovie(Movie movie)
+        public void UpdateMovie(string userId, Movie movie)
         {
+            movie.UserID = userId; 
             db.Update(movie);
             db.SaveChanges();
         }

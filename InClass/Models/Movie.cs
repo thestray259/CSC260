@@ -17,6 +17,9 @@ namespace InClass.Models
         [Required]
         public int ID { get; set; }
 
+        [Required] [MaxLength(450)]
+        public string UserID { get; set; }
+
         //[Required(ErrorMessage = "Hey Dummy, the Title is Required")]
         [Column(TypeName = "varchar(500)")]
         public string Title { get; set; } //= "NO TITLE";

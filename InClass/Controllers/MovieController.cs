@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using InClass.Interfaces;
 using InClass.Data;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace InClass.Controllers
 {
@@ -24,12 +25,13 @@ namespace InClass.Controllers
         public IActionResult Index()
         {
             //return View(MovieList);
-            return View(dal.GetMovies().OrderBy(m => m.ReleaseDate).ToList());
+            return View(dal.GetMovies(User.FindFirstValue(ClaimTypes.NameIdentifier)).OrderBy(m => m.ReleaseDate).ToList());
         }
 
         [HttpGet] 
         public IActionResult AddMovie()
         {
+            ViewBag.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier); 
             return View("AddMovie"); 
         }
 
@@ -48,7 +50,7 @@ namespace InClass.Controllers
         public IActionResult EditMovie(int id)
         {
             Movie m;
-            m = dal.GetMovie(id);
+            m = dal.GetMovie(User.FindFirstValue(ClaimTypes.NameIdentifier), id);
             ViewBag.Mode = "Edit";
             ViewBag.ID = id; 
 
@@ -60,7 +62,7 @@ namespace InClass.Controllers
         {
             if (ModelState.IsValid)
             {
-                dal.UpdateMovie(movie);
+                dal.UpdateMovie(User.FindFirstValue(ClaimTypes.NameIdentifier), movie);
                 return Redirect("/Movie/Index"); 
             }
 
@@ -69,8 +71,8 @@ namespace InClass.Controllers
 
         public IActionResult DeleteMovie(int? id)
         {
-            dal.RemoveMovie(id);
-            return View("Index", dal.GetMovies());
+            dal.RemoveMovie(User.FindFirstValue(ClaimTypes.NameIdentifier), id);
+            return View("Index", dal.GetMovies(User.FindFirstValue(ClaimTypes.NameIdentifier)));
         }
 
         public IActionResult MovieForm()
@@ -85,6 +87,9 @@ namespace InClass.Controllers
 
         public IActionResult DisplayMovie()
         {
+            string userID = User.FindFirstValue(ClaimTypes.NameIdentifier); // wacky id 
+            string email = User.FindFirstValue(ClaimTypes.Email); // also .Name
+
             Movie m = new Movie("Iron Man", 2008, 5.0f); 
             return View(m);
         }

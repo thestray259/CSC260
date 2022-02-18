@@ -8,10 +8,10 @@ namespace InClass.Interfaces
 {
     public interface IDataAccessLayer
     {
-        IEnumerable<Movie> GetMovies();
+        IEnumerable<Movie> GetMovies(string userId);
         void AddMovie(Movie movie);
-        void RemoveMovie(int? id);
-        Movie GetMovie(int? id);
-        void UpdateMovie(Movie movie); 
+        void RemoveMovie(string userId, int? id);
+        Movie GetMovie(string userId, int? id);
+        void UpdateMovie(string userId, Movie movie); 
     }
 }
