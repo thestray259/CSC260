@@ -7,7 +7,7 @@ using InClass.Interfaces;
 
 namespace InClass.Data
 {
-    public class FavoriteMoviesDAL : IDataAccessLayer
+    public class FavoriteMoviesDAL //: IDataAccessLayer
     {
         public static List<Movie> MovieList = new List<Movie>
         {

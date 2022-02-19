@@ -15,11 +15,11 @@
     }
 }
 
-<div>
+<div class="error-messages" asp-validation-summary="All">
     <form id="add_game" class="blanks" asp-controller="Home" asp-action="@strAction" method="post">
         <input asp-for="ID" value="@ViewBag.ID" hidden />
         <input asp-for="Title" placeholder="Title" />
-        <span asp-validation-for="Title" placeholder="Title"></span>
+            <span asp-validation-for="Title" class="error-messages"></span>
         <input asp-for="Genre" placeholder="Genre" />
         <input asp-for="Platform" placeholder="Platform" />
         <input asp-for="Rating" placeholder="ESRB Rating" />
