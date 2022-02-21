@@ -35,22 +35,15 @@ namespace VideoGameLibrary.Data
         public IEnumerable<VideoGame> FilterCollection(string genre, string platform, string esrbRating)
         {
             List<VideoGame> tmpGames = new List<VideoGame>();
+            var games = from g in db.VideoGames select g;
 
             // if not null or empty, continue 
             if (!string.IsNullOrEmpty(genre) && !string.IsNullOrEmpty(platform) && !string.IsNullOrEmpty(esrbRating))
             {
-/*                foreach (var g in GameList)
-                {
-                    if (g.Genre.ToUpper().Contains(genre.ToUpper()) &&
-                        g.Platform.ToUpper().Contains(platform.ToUpper()) &&
-                        g.Rating.ToUpper().Contains(esrbRating.ToUpper()))
-                    {
-                        tmpGames.Add(g);
-                    }
-                }*/
+                games = games.Where(g => g.Genre.Contains(genre) && g.Platform.Contains(platform) && g.Rating.Contains(esrbRating));
             }
 
-            return tmpGames; 
+            return games.ToList(); 
         }
 
         public IEnumerable<VideoGame> GetCollection()
@@ -60,20 +53,14 @@ namespace VideoGameLibrary.Data
 
         public IEnumerable<VideoGame> SearchForGames(string key)
         {
-            List<VideoGame> tmpGames = new List<VideoGame>();
+            var games = from g in db.VideoGames select g;
 
             if (!string.IsNullOrEmpty(key))
             {
-/*                foreach (var g in GameList)
-                {
-                    if (g.Title.ToUpper().Contains(key.ToUpper())) //exception thrown here - key was null
-                    {
-                        tmpGames.Add(g);
-                    }
-                }*/
+                games = games.Where(g => g.Title.Contains(key)); 
             }
 
-            return tmpGames;
+            return games.ToList();
         }
 
         public void ReturnGame(string title)
