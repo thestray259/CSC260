@@ -12,6 +12,7 @@ namespace InClass.Interfaces
         void AddMovie(Movie movie);
         void RemoveMovie(string userId, int? id);
         Movie GetMovie(string userId, int? id);
-        void UpdateMovie(string userId, Movie movie); 
+        void UpdateMovie(string userId, Movie movie);
+        public List<Genre> GetGenres(); 
     }
 }

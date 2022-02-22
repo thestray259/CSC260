@@ -33,6 +33,12 @@ namespace InClass.Data
             //MovieList.Add(movie); 
         }
 
+        public List<Genre> GetGenres()
+        {
+            throw new NotImplementedException();
+            //return db.Genres.ToList(); 
+        }
+
         public Movie GetMovie(string userId, int? id)
         {
             return db.Movies

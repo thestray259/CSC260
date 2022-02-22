@@ -8,6 +8,7 @@ using InClass.Interfaces;
 using InClass.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InClass.Controllers
 {
@@ -31,7 +32,11 @@ namespace InClass.Controllers
         [HttpGet] 
         public IActionResult AddMovie()
         {
-            ViewBag.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier); 
+            ViewBag.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var genreList = dal.GetGenres();
+            ViewBag.Genres = new SelectList(genreList, "Id", "Title"); 
+
             return View("AddMovie"); 
         }
 
@@ -52,7 +57,10 @@ namespace InClass.Controllers
             Movie m;
             m = dal.GetMovie(User.FindFirstValue(ClaimTypes.NameIdentifier), id);
             ViewBag.Mode = "Edit";
-            ViewBag.ID = id; 
+            ViewBag.ID = id;
+
+            var genreList = dal.GetGenres();
+            ViewBag.Genres = new SelectList(genreList, "Id", "Title");
 
             return View("MovieForm", m);
         }
@@ -90,8 +98,8 @@ namespace InClass.Controllers
             string userID = User.FindFirstValue(ClaimTypes.NameIdentifier); // wacky id 
             string email = User.FindFirstValue(ClaimTypes.Email); // also .Name
 
-            Movie m = new Movie("Iron Man", 2008, 5.0f); 
-            return View(m);
+            //Movie m = new Movie("Iron Man", 2008, 5.0f); 
+            return View("MovieForm");
         }
     }
 }

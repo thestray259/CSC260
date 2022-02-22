@@ -29,6 +29,9 @@ namespace InClass.Models
         public float Rating { get; set; } //= 0.0f;
         public DateTime ReleaseDate; 
 
+        public int GenreId { get; set; }
+        public Genre genre { get; set; }
+
         public Movie() { }
 
         public Movie(string title, int year, float rating)

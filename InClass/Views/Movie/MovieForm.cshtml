@@ -18,8 +18,9 @@
 <form asp-controller="Movie" asp-action="@strAction" method="post">
     <input asp-for="ID" value="@ViewBag.ID" hidden />
     <input asp-for="Title" placeholder="Title" />
-        <span asp-validation-for="Title" class="error-messages"></span>
+    <span asp-validation-for="Title" class="error-messages"></span>
     <input asp-for="Year" placeholder="Year" />
     <input asp-for="Rating" placeholder="Rating" />
+    <<select asp-for="GenreId" asp-items="@ViewBag.Genres"></select>
     <button type="submit">Save</button>
 </form>

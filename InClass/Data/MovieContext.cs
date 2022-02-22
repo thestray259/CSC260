@@ -16,5 +16,6 @@ namespace InClass.Data
 
         // Will create the Movies table in the DB using Movie.cs model 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Movie> Genres { get; set; }
     }
 }
