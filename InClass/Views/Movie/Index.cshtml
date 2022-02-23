@@ -1,8 +1,8 @@
-﻿@model List<Movie>
+﻿@model MoviePage
 @{
 }
 
-@if (Model == null || Model.Count() == 0)
+@if (Model == null || Model.MovieList.Count() == 0)
 {
     <h1>No movies provided</h1>
 }
@@ -10,7 +10,7 @@ else
 {
     <div class="row">
         <div class="col-sm-12">
-            <h1>List of movies (@Model.Count()): </h1>
+            <h1>List of movies (@Model.MovieList.Count()): </h1>
         </div>
     </div>
 
@@ -29,12 +29,13 @@ else
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var movie in Model)
+                    @foreach (var movie in Model.MovieList)
                     {
                         <partial name="_MoviePartialView.cshtml" for="@movie" />
                     }
                 </tbody>
             </table>
+            <!--<select asp-items="@Model.Genres"></select> // this is broken rn -->
         </div>
     </div>
 }

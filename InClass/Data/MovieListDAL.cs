@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InClass.Models;
-using InClass.Interfaces; 
+using InClass.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InClass.Data
 {
@@ -42,7 +43,7 @@ namespace InClass.Data
         public Movie GetMovie(string userId, int? id)
         {
             return db.Movies
-                .Where(m => m.ID == id && m.UserID == userId)
+                .Where(m => m.ID == id && m.UserID == userId).Include(m => m.genre)
                 .FirstOrDefault(); 
 
             //return db.Movies.FirstOrDefault(m => m.ID == id); 
