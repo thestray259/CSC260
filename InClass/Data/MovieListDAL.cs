@@ -65,7 +65,7 @@ namespace InClass.Data
 
         public IEnumerable<Movie> GetMovies(string userId)
         {
-            return db.Movies.Where(m => m.UserID == userId).ToList();
+            return db.Movies.Where(m => m.UserID == userId).Include(m => m.genre).ToList();
         }
 
         public void RemoveMovie(string userId, int? id)

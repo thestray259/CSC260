@@ -32,7 +32,9 @@ namespace InClass
                 options.UseSqlServer(Configuration.GetConnectionString("MovieDB"));
             }); 
 
-            services.AddTransient<IDataAccessLayer, MovieListDAL>(); 
+            services.AddTransient<IDataAccessLayer, MovieListDAL>();
+
+            services.AddRazorPages(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

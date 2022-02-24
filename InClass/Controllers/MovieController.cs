@@ -26,7 +26,14 @@ namespace InClass.Controllers
         public IActionResult Index()
         {
             //return View(MovieList);
-            return View(dal.GetMovies(User.FindFirstValue(ClaimTypes.NameIdentifier)).OrderBy(m => m.ReleaseDate).ToList());
+            //return View(dal.GetMovies(User.FindFirstValue(ClaimTypes.NameIdentifier)).OrderBy(m => m.ReleaseDate).ToList());
+            var viewModel = new MoviePage(
+                dal.GetMovies(User.FindFirstValue(ClaimTypes.NameIdentifier))
+                .OrderBy(m => m.ReleaseDate).ToList(),
+                new SelectList(dal.GetGenres(), "Id", "Title")
+                );
+
+            return View(viewModel);
         }
 
         [HttpGet] 
@@ -37,7 +44,7 @@ namespace InClass.Controllers
             var genreList = dal.GetGenres();
             ViewBag.Genres = new SelectList(genreList, "Id", "Title"); 
 
-            return View("AddMovie"); 
+            return View("MovieForm"); 
         }
 
         [HttpPost]
@@ -45,6 +52,7 @@ namespace InClass.Controllers
         {
             if (ModelState.IsValid)
             {
+                movie.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier); 
                 dal.AddMovie(movie); 
                 return Redirect("/Movie/Index"); 
             }
