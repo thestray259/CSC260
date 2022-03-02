@@ -33,6 +33,21 @@ namespace SocialMediaSiteFinal.Controllers
             return View();
         }
 
+        public IActionResult UserPage()
+        {
+            return View();
+        }
+
+        public IActionResult OtherUserPage()
+        {
+            return View();
+        }
+
+        public IActionResult EditUser()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
